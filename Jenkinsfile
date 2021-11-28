@@ -3,10 +3,12 @@ pipeline{
 
     stages {
 
-        stage('Get Source')
+        stage('Get Source'){
             steps{
                 git url: 'https://github.com/AlessandroMelo06/pedelogo-catalogo.git', branch: 'main'
             }
+        }
+
 
         }
         stage('Docker Build') {
