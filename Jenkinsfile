@@ -9,26 +9,22 @@ pipeline{
             }
         }
 
-
-        }
         stage('Docker Build') {
             steps {
-                scripts {
-                    dockerapp = docker.build("alessandromelo06/pedelogocatalogo:${env.BUILD_ID}",
-                        '-f src/PedeLogo.Catalogo.Api/Dockerfile .')
+                script {
+                    dockerapp = docker.build("AlessandroMelo06/pedelogo-catalogo:${env.BUILD_ID}",
+                        '-f ./src/PedeLogo.Catalogo.Api/Dockerfile .')
                 }
-                
             }
         }
-        
-        stage('Docker Push Imagem') {
-            steps {
-                scripts{
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')
-                    dockerapp.Push('latest')
-                    dockerapp.Push("${env.BUILD_ID}")
-               }
 
+        stage('Docker Push Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')
+                    dockerapp.push('latest')
+                    dockerapp.push("${env.BUILD+ID}")
+                }
             }
         }
     }
