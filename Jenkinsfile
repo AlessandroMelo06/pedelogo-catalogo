@@ -8,7 +8,6 @@ pipeline{
                 git url: 'https://github.com/alessandromelo06/pedelogo-catalogo.git', branch: 'main'
             }
         }
- 
         stage('Initialize'){
             def dockerHome = tool 'myDocker'
                 env.PATH = "${dockerHome}/bin:${env.PATH}"
