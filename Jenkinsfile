@@ -18,9 +18,7 @@
         stage('Docker Push Image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')
-                    dockerapp.push('latest')
-                    dockerapp.push("${env.BUILD_ID}")
+                    docker run --rm -u root -p 8081:30001 -v jenkins-data:/var/jenkins_home -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME":/home jenkinsci/blueocean
                 }
             }
         }
