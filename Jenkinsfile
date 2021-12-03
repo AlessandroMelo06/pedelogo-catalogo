@@ -5,14 +5,14 @@ pipeline{
 
         stage('Get Source'){
             steps{
-                git url: 'https://github.com/AlessandroMelo06/pedelogo-catalogo.git', branch: 'main'
+                git url: 'https://github.com/alessandromelo06/pedelogo-catalogo.git', branch: 'main'
             }
         }
 
         stage('Docker Build') {
             steps {
                 script {
-                    dockerapp = docker.build("AlessandroMelo06/pedelogo-catalogo:${env.BUILD_ID}",
+                    dockerapp = docker.build("alessandromelo06/pedelogo-catalogo:${env.BUILD_ID}",
                         '-f ./src/PedeLogo.Catalogo.Api/Dockerfile .')
                 }
             }
