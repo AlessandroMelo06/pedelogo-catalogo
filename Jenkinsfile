@@ -1,13 +1,14 @@
 pipeline{
     agent any
-
     stages {
         stage('Initialize'){
-            def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
+            steps {
+                def dockerHome = tool 'myDocker'
+                env.PATH = "${dockerhome}/bin:${env.PATH}"
+            }
+        }
     }
-
-        stage('Get Source'){
+    stage('Get Source'){
             steps{
                 git url: 'https://github.com/alessandromelo06/pedelogo-catalogo.git', branch: 'main'
             }
@@ -30,4 +31,4 @@ pipeline{
             }
         }
     }
-}
+} 
