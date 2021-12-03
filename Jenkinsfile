@@ -1,4 +1,8 @@
-stage('Get Source'){
+ pipeline{
+    agent any
+    stages {
+
+        stage('Get Source'){
             steps{
                 git url: 'https://github.com/alessandromelo06/pedelogo-catalogo.git', branch: 'main'
             }
